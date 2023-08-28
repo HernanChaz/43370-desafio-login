@@ -1,0 +1,9 @@
+{{#if respuesta.payload.length}}
+    {{#each respuesta.payload}}
+        <ul>
+            <li>{{title}}</li>
+        </ul>
+    {{/each}}
+    {{else}}
+        <p>No hay productos</p>
+{{/if}}
