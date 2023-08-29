@@ -1,5 +1,6 @@
-{{#if respuesta.payload.length}}
-    {{#each respuesta.payload}}
+<h1>Bienvenido {{ user.email }}</h1>
+{{#if products.length}}
+    {{#each products}}
         <ul>
             <li>{{title}}</li>
         </ul>

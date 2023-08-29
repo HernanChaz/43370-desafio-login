@@ -2,24 +2,32 @@ import * as service from '../services/productServices.js';
 
 export const getAll = async (req, res, next) => {
     try {
-        const { page, limit, query, queryValue, sort } = req.query;
-        const response = await service.getProductsServices(page, limit, query, queryValue, sort);
-        const nextLink = response.hasNextPage ? `http://localhost:8080/api/products/?page=${response.nextPage},limit=${limit}` : null;
-        const prevLink = response.hasPrevPage ? `http://localhost:8080/api/products/?page=${response.prevPage},limit=${limit}` : null;
-        const respuesta = {
-            status: 'success',
-            payload: response.docs,
-            totalPages: response.totalPages,
-            prevPage: response.prevPage,
-            nextPage: response.nextPage,
-            hasPrevPage: response.hasPrevPage,
-            hasNextPage: response.hasNextPage,
-            prevLink,
-            nextLink
-        };
-
-        //console.log(respuesta.payload);
-        res.render('products', {respuesta});
+        const user = req.session.info;
+        const { page } = req.query;
+        const {
+          payload: products,
+          totalPages,
+          prevPage,
+          nextPage,
+          page: currentPage,
+          hasPrevPage,
+          hasNextPage,
+        } = await service.getProductsServices({ page, limit: 2 });
+    
+        const plainProducts = products.map((product) => product.toObject());
+    
+        res.render("products", {
+          user,
+          products: plainProducts,
+          totalPages,
+          currentPage,
+          prevPage,
+          nextPage,
+          hasPrevPage,
+          hasNextPage,
+          prevLink: `/products?page=${prevPage}`,
+          nextLink: `/products?page=${nextPage}`,
+        });
     }
     catch (error) {
         next(error.message);

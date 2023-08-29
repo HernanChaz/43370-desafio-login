@@ -7,7 +7,25 @@ const productDao = new ProductDaoMongoDB();
 export const getProductsServices = async (page, limit, query, queryValue, sort) => {   
     try {
         const response = await productDao.getProducts(page, limit, query, queryValue, sort);
-        return response;
+        
+        const result = {
+            payload: response.docs,
+            status: "success",
+            totalPages: response.totalPages,
+            prevPage: response.prevPage,
+            nextPage: response.nextPage,
+            page: response.page,
+            hasPrevPage: response.hasPrevPage,
+            hasNextPage: response.hasNextPage,
+            prevLink: response.hasPrevPage
+              ? `http://localhost:8080/api/products?page=${response.prevPage}`
+              : null,
+            nextLink: response.hasNextPage
+              ? `http://localhost:8080/api/products?page=${response.nextPage}`
+              : null,
+          };
+      
+          return result;
     }
     catch (err) {
         console.log(err);
@@ -39,7 +57,7 @@ export const addProductServices = async (obj) => {
 export const updateProductServices = async (id, obj) => {   
     try {
         const item = await productDao.updateProduct(id, obj);
-        console.log(item);
+        //console.log(item);
         return item;
     }
     catch (err) {

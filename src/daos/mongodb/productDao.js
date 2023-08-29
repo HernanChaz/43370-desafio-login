@@ -19,6 +19,8 @@ export default class ProductDaoMongoDB {
             if(query) filter[query] = queryValue;
             if(sort) sort.price = sortValue;
             const response = await ProductModel.paginate(filter, { page, limit, sort });
+            // const responseObject = response.toObject();
+            // return responseObject;
             return response;
         }
         catch (error){
