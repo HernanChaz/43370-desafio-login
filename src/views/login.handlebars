@@ -1,10 +1,18 @@
-<h1>LOGIN</h1>
-<form action='/users/login' method='post'>
-  Email: <input type='email' name='email' id='email' />
-  Password: <input type='password' name='password' id='password' />
-  <br>
-  <input type='submit' value='LOGIN' />
-</form>
-
-<h2>¿USUARIO NUEVO?</h2>
-<button onclick="location.href='/register'">Regístrate</button>
+<div class="row">
+    <div class="col-sm-9 col-md-6">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h3 class="card-title">Login</h3>
+                <form action='/users/login' method='post'>
+                Email: <input type='email' name='email' id='email' />
+                Password: <input type='password' name='password' id='password' />
+                <br>
+                <button type='submit' class="btn btn-primary">Login</button>
+                </form>
+                <br>
+                <h3>¿Usuario nuevo?</h3>
+                <button onclick="location.href='/register'" class="btn btn-primary">Regístrate</button>
+            </div>
+        </div>
+    </div>
+</div>

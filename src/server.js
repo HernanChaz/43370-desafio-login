@@ -63,8 +63,10 @@ app.use('/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/carts', cartRouter);
 
-const httpServer = app.listen(8080, ()=>{
-    console.log('Server ok on port 8080');
+const PORT = 8081;
+
+const httpServer = app.listen(PORT, ()=>{
+    console.log(`Server ok on port ${PORT}`);
 })
 
 const socketServer = new Server(httpServer);

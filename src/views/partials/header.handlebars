@@ -1,0 +1,20 @@
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link active" href="/api/products">Home</a>
+            </li>
+            {{#if user }}
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/logout">Logout</a>
+                </li>
+            {{else}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Login</a>
+                </li>
+            {{/if}}
+        </ul>  
+    </nav>
+  </div>
+</header>

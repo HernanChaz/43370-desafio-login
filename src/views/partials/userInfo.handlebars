@@ -1,0 +1,14 @@
+{{#if user }}
+<div class="card mb-6">
+    <div class="card-body">
+        <h2 class="card-title">Bienvenido</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Nombre: </strong>{{user.first_name}} {{user.last_name}}</p>
+                <p><strong>Email: </strong>{{user.email}}</p>
+                <p><strong>Rol: </strong>{{user.role}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}

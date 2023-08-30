@@ -2,7 +2,7 @@ import * as service from '../services/productServices.js';
 
 export const getAll = async (req, res, next) => {
     try {
-        const user = req.session.info;
+        const user = req.session.user;
         const { page } = req.query;
         const {
           payload: products,
