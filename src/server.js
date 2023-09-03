@@ -7,6 +7,7 @@ import MongoStore from 'connect-mongo';
 import './config/dbConnection.js';
 import { connectionString } from './config/dbConnection.js';
 
+import 'dotenv/config';
 import { __dirname } from './utils.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import handlebars from 'express-handlebars';
@@ -63,7 +64,7 @@ app.use('/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/carts', cartRouter);
 
-const PORT = 8081;
+const PORT = process.env.PORT;
 
 const httpServer = app.listen(PORT, ()=>{
     console.log(`Server ok on port ${PORT}`);
